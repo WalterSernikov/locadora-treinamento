@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index() {
         if (1 == 1) {
-            echo 'hello world ';
+            echo 'hello world';
         }
         else{
             

@@ -21,6 +21,11 @@ class Welcome extends CI_Controller {
         if (1 == 1) {
             echo 'hello world ';
         }
+        else{
+            
+            echo "ola mundo";
+            
+        }
         $this->load->view('welcome_message');
     }
 }

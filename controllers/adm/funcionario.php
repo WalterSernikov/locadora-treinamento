@@ -19,8 +19,8 @@ class Funcionario extends CI_Controller {
         parent::__construct();
         $this->load->model(array(
             $this->config->item('area_admin') . '/funcionario_model',
-            $this->config->item('area_admin') . '/cidade_model',
-            $this->config->item('area_admin') . '/grupo_model'
+            
+            $this->config->item('area_admin') . '/usuario_model'
         ));
     }
 
@@ -31,7 +31,7 @@ class Funcionario extends CI_Controller {
     public function all() {
         $dados['view'] = '/funcionario/index';
         $dados['titulo'] = 'Gerenciar Funcionario';
-        $dados['funcionario'] = array();
+        $dados['funcionario'] = $this->funcionario_model->get_all();
         $this->load->view($this->config->item('area_admin') . '/layout', $dados);
     }
 

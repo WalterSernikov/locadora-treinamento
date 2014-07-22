@@ -160,6 +160,7 @@
         </div>
     </div>
 
+    
     <div class="row">
         <div class="form-group col-lg-3 div-grupos">
             <?php 
@@ -202,6 +203,37 @@
             <label for="grupos" class="" style="display: none;" id="msg_verifica_grupos">&nbsp;Selecione ao menos um grupo.</label>
         </div>
     </div>
+    
+    
+    <div class="row">
+        
+        <div class="form-group col-lg-6">
+            
+            <?php 
+            
+                echo form_label('Salario');
+                echo form_input('salario', (isset($usuario->salario)? $usuario->salario: set_value('salario')), 'class="form-control "');
+                echo form_error('salario');
+                
+            
+            ?>
+            
+        </div>
+    
+        
+        <div class="form-group col-lg-6">
+            
+            <?php 
+            
+                echo form_label('Funcao');
+                $funcao = $this->config->item('funcao');
+                echo form_dropdown('funcao',$funcao,(isset($usuario->funcao)? $usuario->funcao: set_value('funcao')),'class="form-control"');
+                echo form_error('funcao');
+         
+            ?>
+        </div>
+    </div>
+
     
     <div class="row" style="padding-top: 20px;">
         <div class="form-group col-lg-6">

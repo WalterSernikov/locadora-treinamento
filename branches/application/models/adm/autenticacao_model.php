@@ -9,14 +9,10 @@ if (!defined('BASEPATH'))
  */
 
 /**
- * Description of dashboard
+ * Description of autenticacao_model
  *
  * @author tellks
  */
-class Dashboard extends CI_Controller{
-    public function index() {
-        $dados['titulo'] = 'Dashboard';
-        $dados['view'] = '/dashboard/index';
-        $this->load->view($this->config->item('area_admin') . '/layout', $dados);
-    }
+class autenticacao_model {
+    //put your code here
 }

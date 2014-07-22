@@ -19,6 +19,8 @@ class Funcionario extends CI_Controller {
         parent::__construct();
         $this->load->model(array(
             $this->config->item('area_admin') . '/funcionario_model',
+            $this->config->item('area_admin') . '/cidade_model',
+            $this->config->item('area_admin') . '/grupo_model'
         ));
     }
 
@@ -34,11 +36,13 @@ class Funcionario extends CI_Controller {
     }
 
     public function cadastrar() {
+        $dados['ufs']    = $this->cidade_model->get_UFs();
+        $dados['grupos'] = $this->grupo_model->get_all();
         $dados['titulo'] = 'Cadastrar funcionario';
         $dados['view'] = $this->config->item('area_admin') . '/funcionario/editar';
         $dados['js'][] = 'plugins/jquery.validate';
         $dados['js'][] = 'pages/editar_funcionario';
-
+        $dados['funcionario'] = new stdClass();
         $this->load->view($this->config->item('area_admin') . '/layout', $dados);
     }
 

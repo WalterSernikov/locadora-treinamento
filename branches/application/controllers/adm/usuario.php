@@ -9,14 +9,13 @@ if (!defined('BASEPATH'))
  */
 
 /**
- * Description of dashboard
+ * Description of usuario
  *
  * @author tellks
  */
-class Dashboard extends CI_Controller{
+class Usuario extends CI_Controller{
+        
     public function index() {
-        $dados['titulo'] = 'Dashboard';
-        $dados['view'] = '/dashboard';
-        $this->load->view($this->config->item('area_admin') . '/layout', $dados);
+        
     }
 }

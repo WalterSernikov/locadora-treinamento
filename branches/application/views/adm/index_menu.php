@@ -77,15 +77,32 @@ if (!defined('BASEPATH'))
                             <button class='btn btn-primary   col-lg-12'>
                                 Funcionario
                             </button></a>
+                    </div>                
+
+                    <div class="btn-group">
+                        <button class='btn btn-primary   col-lg-12'>
+                            Cliente
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class='btn btn-primary   col-lg-12'>
+                            Usuário
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class='btn btn-primary   col-lg-12'>
+                            Locar
+                        </button>
                     </div>
                     <div class="btn-group">
 
                         <button type="button" class="btn btn-primary dropdown-toggle col-lg-12" data-toggle="dropdown">
-                            Gerenciar Usuario <span class="caret"></span>
+                            Sistema <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Usuario</a></li>
+                            <li><a href="#">Funcionalidade</a></li>
                             <li><a href="#">Tipo Usuario</a></li>
+                            <li><a href="#">Controle de Acesso</a></li>
                         </ul>
                     </div>
                     <div class="btn-group">
@@ -98,21 +115,6 @@ if (!defined('BASEPATH'))
                             <li><a href="#">Marca</a></li>
                             <li><a href="#">Cambio</a></li>
                         </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button class='btn btn-primary   col-lg-12'>
-                            Cliente
-                        </button>
-                    </div>
-                    <div class="btn-group">
-                        <button class='btn btn-primary   col-lg-12'>
-                            Grupos
-                        </button>
-                    </div>
-                    <div class="btn-group">
-                        <button class='btn btn-primary   col-lg-12'>
-                            Locar
-                        </button>
                     </div>
                 </div>
             </div>

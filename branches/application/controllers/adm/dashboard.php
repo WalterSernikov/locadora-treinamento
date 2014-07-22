@@ -1,22 +1,21 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<?php if (!defined('BASEPATH'))  exit('No direct script access allowed');
 
 /**
  * Description of dashboard
  *
- * @author tellks
+ * @author jklaus
  */
-class Dashboard extends CI_Controller{
-    public function index() {
+class Dashboard extends TR_Controller{
+    
+    function __construct() {
+        parent::__construct();
+    }
+            
+    function index(){
+        
         $dados['titulo'] = 'Dashboard';
-        $dados['view'] = '/dashboard/index';
-        $this->load->view($this->config->item('area_admin') . '/layout', $dados);
+        $dados['view']   = $this->config->item('area_admin') . '/dashboard/index';
+        
+        $this->load->view($this->config->item('area_admin') . '/layout',$dados);
     }
 }

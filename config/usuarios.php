@@ -16,6 +16,13 @@ $config['grupos_usuario'] = array(
     3 => 'Suporte'
 );
 
+$config['funcao'] = array(
+    1 => 'TI',
+    2 => 'Atendentes',
+    3 => 'Gerente'
+    
+);
+
 $config['regras_validacao'] = array(
     array(
         'field' => 'email',

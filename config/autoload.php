@@ -91,7 +91,7 @@ $autoload['helper'] = array('url',
   |
  */
 
-$autoload['config'] = array('application');
+$autoload['config'] = array('application','pessoa');
 
 
 /*

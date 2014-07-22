@@ -39,7 +39,6 @@
 */
 
 $route['default_controller'] = "adm/dashboard";
-
 $route['404_override'] = '';
 
 

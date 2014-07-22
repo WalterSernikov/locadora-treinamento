@@ -18,14 +18,7 @@ class Welcome extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index() {
-        if (1 == 1) {
-            echo 'hello world';
-        }
-        else{
-            
-            echo "ola mundo";
-            
-        }
+      
         $this->load->view('welcome_message');
     }
 }

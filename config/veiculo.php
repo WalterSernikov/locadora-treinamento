@@ -23,5 +23,6 @@ $config['abs'] = array (
 $config['status'] = array (
     0 =>'Livre',
     1 =>'Locado',
-    2 =>'Reservado' 
+    2 =>'Reservado',
+    3 =>'Manutenção'
 );

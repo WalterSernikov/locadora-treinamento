@@ -103,4 +103,20 @@ class Cliente_model extends CI_Model{
         
     }
     
+    function get_cliente(){
+        $this->db->select('id,nome,email');
+        $this->db->from($this->tabela);
+        
+        
+        $resultado = $this->db->get();
+        
+        $retorno = array();
+        if($resultado->num_rows() > 0){
+            foreach($resultado->result() as $cliente){
+                $retorno[$cliente->id]=$cliente->nome.','.$cliente->email;
+            }
+        }
+        return $retorno;
+    }
+    
 }

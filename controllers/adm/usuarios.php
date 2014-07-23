@@ -51,7 +51,7 @@ class Usuarios extends TR_Controller{
         
         $dados['usuarios'] = $this->usuario_model->get_all();
         
-        $dados['titulo'] = 'Gerenciar usuários';
+        $dados['titulo'] = 'Gerenciar funcionário';
         $dados['view']   = $this->config->item('area_admin') . '/usuarios/index';
         
         $this->load->view($this->config->item('area_admin') . '/layout',$dados);
@@ -67,7 +67,7 @@ class Usuarios extends TR_Controller{
         $dados['ufs']    = $this->cidade_model->get_UFs();
         $dados['grupos'] = $this->grupo_model->get_all();
         
-        $dados['titulo'] = 'Cadastrar usuário';
+        $dados['titulo'] = 'Cadastrar funcionário';
         $dados['view']   = $this->config->item('area_admin') . '/usuarios/editar';
         $dados['js'][]   = 'plugins/jquery.validate';
         $dados['js'][]   = 'pages/editar_usuario';
@@ -87,8 +87,9 @@ class Usuarios extends TR_Controller{
         $dados['ufs']     = $this->cidade_model->get_UFs();
         $dados['cidades'] = $this->cidade_model->get_cid_UF($dados['usuario']->uf);
         $dados['grupos']  = $this->grupo_model->get_all();
+        $dados['funcionario'] = $this->usuario_model->get_fun_by_id($dados['usuario']->id);        
         
-        $dados['titulo'] = 'Editar usuário';
+        $dados['titulo'] = 'Editar funcionário';
         $dados['view']   = $this->config->item('area_admin') . '/usuarios/editar';
         $dados['js'][]   = 'plugins/jquery.validate';
         $dados['js'][]   = 'pages/editar_usuario';
@@ -114,6 +115,7 @@ class Usuarios extends TR_Controller{
         $this->form_validation->set_error_delimiters('<label class="error">', '</label>');
         
         $usuario = new stdClass();
+        $funcionario = new stdClass();
 
         $id = $this->input->post('id');
         $usuario->nome = $this->input->post('nome');
@@ -126,18 +128,23 @@ class Usuarios extends TR_Controller{
         $usuario->cidade = $this->input->post('cidade');
         $usuario->status = $this->input->post('status');
         $usuario->grupos = $this->input->post('grupos');
+        
+        $funcionario->salario = $this->input->post('salario');
+        $funcionario->cpf = $this->input->post('cpf');
+        $funcionario->rg = $this->input->post('rg');
         // Executa a validacao
         if ($this->form_validation->run() === FALSE) {
             
             // Caso os dados sejam invalidos exibe o formulario de validacao novamente
             
             $usuario->id = $id;
-            $dados['usuario']=$usuario; 
+            $dados['usuario'] = $usuario; 
+            $dados['funcionario'] = $funcionario;
             
             $dados['ufs'] = $this->cidade_model->get_UFs();
             $dados['grupos']  = $this->grupo_model->get_all();
             
-            $dados['titulo'] = 'Editar usuário';
+            $dados['titulo'] = 'Editar funcionario';
             $dados['view']   = $this->config->item('area_admin') . '/usuarios/editar';
             $dados['js'][]   = 'plugins/jquery.validate';
             $dados['js'][]   = 'pages/editar_usuario';
@@ -147,7 +154,7 @@ class Usuarios extends TR_Controller{
             
             // Caso os dados sejam validos salva no banco de dados
             
-            $senha               = $this->input->post('senha');
+            $senha =  $this->input->post('senha');
             
             
             // Se foi informada a senha do usuario criptografa ela
@@ -160,11 +167,13 @@ class Usuarios extends TR_Controller{
             if (empty($id)) {
 
                 // Caso nao seja informado o ID do registro a ser atualizado insere um novo
-                $resultado = $this->usuario_model->inserir($usuario);
+                $resultado = $this->usuario_model->inserir($usuario,$funcionario);
+                
+                
             } else {
 
                 $usuario->id = $id;
-                $resultado = $this->usuario_model->atualizar($usuario);
+                $resultado = $this->usuario_model->atualizar($usuario,$funcionario);
             }
 
             // Captura o resultado da operacao e seta a mensagem a ser exibida para o usuario

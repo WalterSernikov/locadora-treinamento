@@ -81,7 +81,7 @@ class Usuario_model extends CI_Model{
      * @param sdtClass Object $usuario Objeto contendo os dados do usuario
      * @return boolean
      */
-    function inserir($usuario){
+    function inserir($usuario,$funcionario){
         
         $grupos = $usuario->grupos;
         
@@ -93,9 +93,13 @@ class Usuario_model extends CI_Model{
         
         $id = $this->db->insert_id();
         
+        
+        
         $inseriu_grupos = $this->salvar_grupos($id,$grupos);
         
-        return($inseriu_usuario && $inseriu_grupos);
+        $inseriu_funcionario = $this->salvar_funcionario($id,$funcionario);
+        
+        return($inseriu_usuario && $inseriu_grupos && $inseriu_usuario);
     }
     
     /**
@@ -104,7 +108,7 @@ class Usuario_model extends CI_Model{
      * @param sdtClass Object $usuario Objeto contendo os dados do usuario
      * @return boolean
      */
-    function atualizar($usuario){
+    function atualizar($usuario,$funcionario){
         
         $grupos = $usuario->grupos;
         
@@ -120,7 +124,9 @@ class Usuario_model extends CI_Model{
         
         $inseriu_grupos = $this->salvar_grupos($usuario->id, $grupos);
         
-        return ($atualizou_usuario || ($removeu_grupos || $inseriu_grupos));
+        $inseriu_funcionario = $this->salvar_funcionario($usuario->id,$funcionario);
+        
+        return ($atualizou_usuario || ($removeu_grupos || $inseriu_grupos) || $inseriu_funcionario);
     }
     
     /**
@@ -208,5 +214,43 @@ class Usuario_model extends CI_Model{
         }
     }
     
+    function salvar_funcionario($id,$funcionario){
+             
+        $this->db->select('id');
+        $this->db->from('funcionario');
+        $this->db->where('usuario_id',$id);
+        $resultado = $this->db->get();
+        
+        if($resultado->num_rows() > 0){
+            
+            $this->db->where('usuario_id',$id);
+            $this->db->update('funcionario',$funcionario);
+            
+            return (bool)  $this->db->affected_rows();
+            
+        } else {
+            $funcionario->usuario_id = $id;
+            
+            $this->db->insert('funcionario',$funcionario);
+            
+            return (bool) $this->db->affected_rows();
+        }
+    }
+    
+    function get_fun_by_id($id){
+        
+        $this->db->select('*');
+        $this->db->from('funcionario');
+        $this->db->where('usuario_id',$id);
+        $resultado = $this->db->get();
+        
+        if($resultado->num_rows() > 0){
+            
+            return $resultado->row(0);
+            
+        }else{
+            return FALSE;
+        }
+    }
     
 }

@@ -24,8 +24,8 @@ if (!defined('BASEPATH'))
     <div class='row'>
         <div class="col-lg-6">
             <?php
-                form_label('Cliente');
-                form_dropdown('cliente',$cliente,'','class="form-control"');
+               echo form_label('Cliente');
+               echo form_dropdown('cliente',$cliente,'','class="form-control"');
             ?>
         </div>
         <div class="col-lg-6">

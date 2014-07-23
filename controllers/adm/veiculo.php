@@ -13,6 +13,49 @@ if (!defined('BASEPATH'))
  *
  * @author tellks
  */
-class veiculo {
-    //put your code here
+class Veiculo extends TR_Controller{
+    function __construct() {
+        parent::__construct();
+        
+        if(!$this->autenticacao->verifica_acesso()){
+            
+            redirect($this->config->item('area_admin') . '/acesso_negado');
+        }
+        
+        // Carrega as configuracoes do usuario
+        $this->load->config('veiculo');
+        
+        // Carrega a library de validacao
+        $this->load->library('form_validation');
+        
+        // Carrega models utilizadas
+        $this->load->model(array(
+            $this->config->item('area_admin') . '/veiculo_model',
+            $this->config->item('area_admin') . '/marca_model'
+        ));
+    }
+    
+    function index(){
+        $this->all();
+    }
+    
+    function all(){
+        $dados['veiculo'] = $this->veiculo_model->get_all();
+        
+        $dados['view'] = $this->config->item('area_admin').'/veiculo/index';
+        $dados['titulo'] = 'Gerenciar veiculos';
+        
+        $this->load->view($this->config->item('area_admin').'/layout',$dados);
+    }
+    
+    function cadastrar (){
+        $dados['marca'] = $this->marca_model->get_all();
+        
+        $dados['titulo'] = 'Cadastrar veiculo';
+        $dados['view']   = $this->config->item('area_admin') . '/veiculo/editar';
+        $dados['js'][]   = 'plugins/jquery.validate';
+        $dados['js'][]   = 'pages/editar_veiculo';
+        
+        $this->load->view($this->config->item('area_admin') . '/layout',$dados);
+    }
 }

@@ -13,6 +13,22 @@ if (!defined('BASEPATH'))
  *
  * @author tellks
  */
-class veiculo_model {
-    //put your code here
+class Veiculo_model extends CI_Model{
+    
+    private $tabela;
+    
+    function __construct() {
+        parent::__construct();
+        $this->tabela = 'veiculo';
+    }
+    
+    function get_all(){
+        $resultado = $this->db->get($this->tabela);
+        if($resultado->num_rows() > 0){
+            return  $resultado->result();
+        }
+        else{
+            return array();
+        }
+    }
 }

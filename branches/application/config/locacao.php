@@ -2,9 +2,15 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+$config['status_pagamento'] = array (
+    0 =>'Não Pago',
+    1 =>'Pago',
+);
+
+$config['status_locacao'] = array (
+    0 =>'Desistente',
+    1 =>'Reservado',
+    2 =>'Pendente',
+    3 =>'Finalizado'
+);

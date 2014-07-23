@@ -31,4 +31,20 @@ class Veiculo_model extends CI_Model{
             return array();
         }
     }
+    
+    function get_veiculos(){
+        $this->db->select('id,modelo,cor,placa');
+        $this->db->from($this->tabela);
+        $this->db->where('status',(int)1);
+        
+        $resultado = $this->db->get();
+        
+        $retorno = array();
+        if($resultado->num_rows() > 0){
+            foreach($resultado->result() as $veiculo){
+                $retorno[$veiculo->id]=$veiculo->modelo.','.$veiculo->cor.','.$veiculo->placa;
+            }
+        }
+        return $retorno;
+    }
 }

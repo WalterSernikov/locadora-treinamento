@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
-<?php echo _mensagem_flashdata();?>
+<?php echo _mensagem_flashdata(); ?>
 
 <div class="row col-lg-12">
     <div class="panel panel-default">
@@ -14,11 +14,14 @@
 
             foreach ($cliente as $u) {
 
-                $link_editar  = base_url($this->config->item('area_admin') . '/cliente/editar/' . $u->id);
-                
-                $acoes  = '<a href="' . $link_editar . '" class="btn btn-info btn-sm">Editar</a>&nbsp;';
+
+
+                $link_editar = base_url($this->config->item('area_admin') . '/locacao/editar/' . $u->id);
+
+                $acoes = '<a href="' . $link_editar . '" class="btn btn-info btn-sm">Editar</a>&nbsp;';
+
                 $acoes .= '<a href="#" data-id="' . $u->id . '" data-toggle="modal" data-target="#modal_confirmar_remocao" class="btn btn-danger btn-sm btn_remover">Remover</a>';
-                
+
                 $this->table->add_row(
                         $u->id, $u->nome, $u->email, $u->telefone, $acoes
                 );

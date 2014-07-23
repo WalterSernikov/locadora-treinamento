@@ -27,9 +27,80 @@ class Cliente_model extends CI_Model{
         $resultado = $this->db->get($this->tabela);
         
         if($resultado->num_rows > 0){
-            return $resultado->result(0);
+            return $resultado->result();
         }else{
             return array();
         }
     }
+    
+    function inserir($cliente){
+        
+                
+        $this->db->insert($this->tabela, $cliente);
+        
+        $inseriu_cliente = (bool)  $this->db->affected_rows();
+        
+        
+        return($inseriu_cliente);
+    }
+    
+    /**
+     * atualiza um cliente no banco de dados
+     * 
+     * @param sdtClass Object $cliente Objeto contendo os dados do cliente
+     * @return boolean
+     */
+    function atualizar($cliente){
+        
+               
+        $this->db->where('id', (int)$cliente->id);
+        
+        $this->db->update($this->tabela,$cliente);
+        
+        $atualizou_cliente = (bool)$this->db->affected_rows();
+        
+                
+        return ($atualizou_cliente);
+    }
+    
+    /**
+     * Remove um cliente do banco de dados
+     * 
+     * @param int $id ID do cliente a ser removido
+     * @return boolean
+     */
+    function remover($id){
+        
+        $this->db->where('id', (int)$id);
+        
+        $this->db->delete($this->tabela);
+        
+        return (bool)$this->db->affected_rows();
+    }
+    
+    function get_by_id($id){
+        
+        $this->db->select('cl.*, c.uf');
+        
+        $this->db->from($this->tabela .  ' AS cl');
+        
+        $this->db->join('cidade AS c', 'c.id = cl.cidade', 'LEFT');
+        
+        $this->db->where('cl.id', $id);
+        
+        $resultado = $this->db->get();
+        
+        if($resultado->num_rows() > 0){
+            
+            $cliente = $resultado->row(0);
+            
+            return $cliente;
+        }
+        else{
+            
+            return false;
+        }
+        
+    }
+    
 }

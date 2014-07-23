@@ -28,6 +28,9 @@ class Autenticacao_model extends CI_Model{
         // Join com a tabela de usuario grupo para buscar os seus grupos
         $this->db->join('usuario_grupo AS ug', 'ug.usuario_id = u.id');
         
+        $this->db->join ('funcionario AS f', 'f.usuario_id = u.id');
+        
+        
         $this->db->from('usuario AS u');
         
         $this->db->where('u.email', $email);

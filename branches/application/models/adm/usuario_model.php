@@ -99,7 +99,7 @@ class Usuario_model extends CI_Model{
         
         $inseriu_funcionario = $this->salvar_funcionario($id,$funcionario);
         
-        return($inseriu_usuario && $inseriu_grupos && $inseriu_usuario);
+        return($inseriu_usuario && $inseriu_grupos && $inseriu_funcionario);
     }
     
     /**
@@ -141,7 +141,16 @@ class Usuario_model extends CI_Model{
         
         $this->db->delete($this->tabela);
         
-        return (bool)$this->db->affected_rows();
+        $remocao_usuario = (bool)$this->db->affected_rows();
+        
+        
+        
+        $this->db->where('usuario_id', (int)$id);
+        $this->db->delete('funcionario');
+        
+        $remocao_funcionario = (bool)$this->db->affected_rows();
+        
+        return ($remocao_funcionario && $remocao_usuario);
     }
     
     /**

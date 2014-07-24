@@ -11,8 +11,8 @@ $config['cambio'] = array (
 );
 
 $config['ar'] = array (
-    0 =>'Não',
-    1 =>'Sim'    
+    0 =>'Não possui',
+    1 =>'Possui'    
 );
 
 $config['abs'] = array (

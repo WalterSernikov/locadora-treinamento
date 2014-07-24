@@ -53,7 +53,7 @@ if (!defined('BASEPATH'))
 
     
     
-<div class="row">   
+<div class="row mg10">   
     
     <div class="col-lg-1">
         <?php
@@ -88,7 +88,15 @@ if (!defined('BASEPATH'))
         ?>
     </div>
     
-    <div class="col-lg-3">
+    <div class="col-lg-1">
+        <?php
+                echo form_label('ABS:');
+                echo form_dropdown('abs',$abs,'','class = "form-control"');
+                echo form_error('abs');
+        ?>
+    </div>
+    
+    <div class="col-lg-2">
         <?php
                 echo form_label('Transmissão:');
                 echo form_dropdown('cambio',$cambio,'','class = "form-control"');

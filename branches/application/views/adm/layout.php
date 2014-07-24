@@ -28,6 +28,8 @@ echo doctype('html5');
         
         echo link_tag(base_url('assets/css/template.css'), 'stylesheet', 'text/css', 'screen');lnbreak();
         
+        echo link_tag(base_url('assets/css/custom/projeto.css'), 'stylesheet', 'text/css', 'screen');lnbreak();
+        
         $title = $this->config->item('app_nome');
         
         $title .= (isset($titulo))? ' - ' . $titulo: '';
@@ -76,6 +78,8 @@ echo doctype('html5');
         echo script_tag('assets/js/plugins/metisMenu/jquery.metisMenu.js', 'text/javascript');lnbreak();
         
         echo script_tag('assets/js/template.js', 'text/javascript');lnbreak();
+        
+        echo script_tag('assets/js/plugins/jquery.inputmask.bundle.min.js', 'text/javascript');lnbreak();
         
         // Carrega os javascripts exclusivos de cada pagina que sao definidos nas controladoras
         if(isset($js) && is_array($js)){

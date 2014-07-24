@@ -11,6 +11,13 @@ $config['status_pagamento'] = array (
 $config['status_locacao'] = array (
     0 =>'Desistente',
     1 =>'Reservado',
-    2 =>'Pendente',
+    2 =>'Alocado',
     3 =>'Finalizado'
+);
+
+$config['regras_validacao'] = array(
+    array('field' => 'data_ini',
+        'label' => 'data_ini',
+        'rules' => 'callback_valida_data_call'
+    )
 );

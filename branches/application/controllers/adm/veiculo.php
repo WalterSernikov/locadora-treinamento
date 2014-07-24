@@ -50,6 +50,9 @@ class Veiculo extends TR_Controller{
     
     function cadastrar (){
         $dados['marca'] = $this->marca_model->get_all();
+        $dados['ar'] = $this->config->item('ar');
+        $dados['cambio'] = $this->config->item('cambio');
+        $dados['abs'] = $this->config->item('abs');
         
         $dados['titulo'] = 'Cadastrar veiculo';
         $dados['view']   = $this->config->item('area_admin') . '/veiculo/editar';

@@ -53,8 +53,9 @@ class Autenticacao {
         
         $user_data = array(
             'nome'       => $usuario->nome,
-            'usuario_id' => $usuario->id,
-            'grupos'     => $usuario->grupos
+            'usuario_id' => $usuario->idU,
+            'grupos'     => $usuario->grupos,
+            'funcionario_id' => $usuario->idF
         );
         
         $this->CI->session->set_userdata($user_data);

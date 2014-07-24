@@ -58,4 +58,12 @@ class Veiculo extends TR_Controller{
         
         $this->load->view($this->config->item('area_admin') . '/layout',$dados);
     }
+    
+    function salvar () {
+        
+        
+        
+        
+    }
+    
 }

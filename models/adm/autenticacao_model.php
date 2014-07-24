@@ -23,7 +23,7 @@ class Autenticacao_model extends CI_Model{
     function get_user($email){
        
         // Dados a serem retornados
-        $this->db->select('u.id, u.nome, u.email,u.senha, ug.grupo_id');
+        $this->db->select('u.id AS idU, u.nome, u.email,u.senha, ug.grupo_id, f.id as idF');
         
         // Join com a tabela de usuario grupo para buscar os seus grupos
         $this->db->join('usuario_grupo AS ug', 'ug.usuario_id = u.id');

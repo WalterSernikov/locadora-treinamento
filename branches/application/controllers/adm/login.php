@@ -18,7 +18,7 @@ class Login extends CI_Controller{
         // Se o usuario ja estive autenticado redireciona ele para a dashboard
         if($resultado){
             
-            redirect($this->config->item('area_admin') . '/dashboard');
+            redirect($this->config->item('area_admin') . '/locacao');
         }
         
          $this->load->library('form_validation');
@@ -70,7 +70,7 @@ class Login extends CI_Controller{
             if($resultado){
                 
                 // Se autenticou redireciona para a dashboard
-                redirect($this->config->item('area_admin') . '/dashboard', 'refresh');
+                redirect($this->config->item('area_admin') . '/locacao', 'refresh');
             }
             else{
                 

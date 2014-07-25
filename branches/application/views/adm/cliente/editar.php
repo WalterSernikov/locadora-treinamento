@@ -139,7 +139,7 @@
         <div class="form-group col-lg-6">
                 <?php
                 echo form_label('CPF*');
-                echo form_input('cpf', (isset($cliente->cpf)? $cliente->cpf: set_value('cpf')), 'class="form-control "');
+                echo form_input('cpf', (isset($cliente->cpf)? $cliente->cpf: set_value('cpf')), 'id="cpf" class="form-control "');
                 echo form_error('cpf');
                 ?>
         </div>

@@ -41,6 +41,20 @@ class Marca_model extends CI_Model{
         }
     }
     
+    
+    function get_marca(){
+        $marca = $this->db->get($this->tabela);
+        $resultado = array();
+        if($marca->num_rows() > 0){
+            foreach ($marca->result() as $m){
+                $resultado[$m->id] = $m->nome;
+            }
+            return $resultado;
+        }else{
+            return array();
+        }
+    }
+    
     /**
      * Busca os dados de um marca pelo seu ID
      * 

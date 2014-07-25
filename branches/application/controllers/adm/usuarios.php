@@ -42,6 +42,26 @@ class Usuarios extends TR_Controller{
         $this->all();
     }
     
+    function confere_cpf (){
+        
+        $cpf= $this->input->post('cpf');
+        $id= $this->input->post('id');
+        
+        $cliente = $this->usuario_model->get_by_cpf($cpf,$id);
+        
+        if($cliente){
+            $resultado = (int)FALSE;
+            
+        }else{
+            
+            $resultado = (int)TRUE;
+        }
+        
+            echo $resultado;
+            
+        
+    }
+    
     /**
      * Lista os registros cadastrados
      * 

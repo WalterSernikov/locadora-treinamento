@@ -23,14 +23,19 @@ echo _mensagem_flashdata();
                     }
                 }
 
+                $acoes = '';
 
                 $link_editar = base_url($this->config->item('area_admin') . '/locacao/editar/' . $l->id);
 
+                if($status_locacao != 'Finalizado'){
+                    
+                
                 $acoes = '<a href="' . $link_editar . '" class="btn btn-info btn-sm">Editar</a>&nbsp;';
                 
                 if($status_locacao === 'Desistente'){
                     
                         $acoes .= '<a href="#" data-id="' . $l->id . '" data-toggle="modal" data-target="#modal_confirmar_remocao" class="btn btn-danger btn-sm btn_remover">Remover</a>';
+                }
                 }
                 $data_ini = implode('/', array_reverse(explode('-', $l->data_ini)));
                 $data_fim = implode('/', array_reverse(explode('-', $l->data_fim)));

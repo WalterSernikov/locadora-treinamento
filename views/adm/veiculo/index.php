@@ -14,7 +14,7 @@ echo _mensagem_flashdata();
         <div class="panel-body">
 
             <?php
-            $this->table->set_heading('Id', 'Modelo', 'Cor', 'Placa', 'Ações');
+            $this->table->set_heading('Id', 'Modelo', 'Cor', 'Placa','Ano', 'Ações');
 
             foreach ($veiculo as $v) {
 
@@ -24,7 +24,7 @@ echo _mensagem_flashdata();
                 $acoes .= '<a href="#" data-id="' . $v->id . '" data-toggle="modal" data-target="#modal_confirmar_remocao" class="btn btn-danger btn-sm btn_remover">Remover</a>';
                 
                 $this->table->add_row(
-                        $v->id, $v->modelo, $v->cor, $v->placa, $acoes
+                        $v->id, $v->modelo, $v->cor, $v->placa,$v->ano, $acoes
                 );
             }
 

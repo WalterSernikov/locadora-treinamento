@@ -164,7 +164,7 @@ class Locacao extends TR_Controller {
         $locacao->veiculo_id = $this->input->post('veiculo');
         $locacao->status_pagamento = $this->input->post('status_pagamento');
         $locacao->status_locacao = $this->input->post('status_locacao');
-        $locacao->funcionario_id = (int) $this->session->userdata('funcionario_id');
+        
         $locacao->valor_total = $this->input->post('preco_total');
         $locacao->caucao = $this->input->post('preco_calcao');
 //        echo '<pre>';
@@ -185,6 +185,7 @@ class Locacao extends TR_Controller {
             $this->load->view($this->config->item('area_admin') . '/layout', $dados);
         } else {
             if (empty($id)) {
+                $locacao->funcionario_id = (int) $this->session->userdata('funcionario_id');
                 $resultado = $this->locacao_model->inserir($locacao);
             } else {
                 $locacao->id = $id;

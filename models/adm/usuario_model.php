@@ -74,6 +74,31 @@ class Usuario_model extends CI_Model{
         }
         
     }
+    
+    function get_by_cpf($cpf,$id = 0){
+        
+        $this->db->select('*');
+        
+        $this->db->from($this->tabela);
+        
+        $this->db->join('funcionario', 'funcionario.usuario_id = usuario.id');
+        
+        $this->db->where('funcionario.cpf',$cpf);
+        
+        if ($id > 0) {
+            
+            $this->db->where_not_in('id',$id);
+        }
+        
+        $resultado = $this->db->get();
+        if($resultado->num_rows() > 0){
+            
+            return $resultado->row(0);
+        }else{
+            return FALSE;
+        }
+        
+    }
          
     /**
      * Insere um usuario no banco de dados

@@ -44,6 +44,50 @@ class Cliente_model extends CI_Model{
         return($inseriu_cliente);
     }
     
+    
+    function get_by_email($email,$id = 0){
+        
+        $this->db->select('*');
+        
+        $this->db->from($this->tabela);
+        
+        $this->db->where('email',$email);
+        
+        if ($id > 0) {
+            
+            $this->db->where_not_in('id',$id);
+        }
+        
+        $resultado = $this->db->get();
+        if($resultado->num_rows() > 0){
+            
+            return $resultado->row(0);
+        }else{
+            return FALSE;
+        }
+    }
+    
+    function get_by_cpf($cpf,$id = 0){
+        
+        $this->db->select('*');
+        
+        $this->db->from($this->tabela);
+        
+        $this->db->where('cpf',$cpf);
+        
+        if ($id > 0) {
+            
+            $this->db->where_not_in('id',$id);
+        }
+        
+        $resultado = $this->db->get();
+        if($resultado->num_rows() > 0){
+            
+            return $resultado->row(0);
+        }else{
+            return FALSE;
+        }
+    }
     /**
      * atualiza um cliente no banco de dados
      * 
@@ -104,7 +148,7 @@ class Cliente_model extends CI_Model{
     }
     
     function get_cliente(){
-        $this->db->select('id,nome,email');
+        $this->db->select('id,nome,cpf');
         $this->db->from($this->tabela);
         
         
@@ -113,7 +157,7 @@ class Cliente_model extends CI_Model{
         $retorno = array();
         if($resultado->num_rows() > 0){
             foreach($resultado->result() as $cliente){
-                $retorno[$cliente->id]=$cliente->nome.','.$cliente->email;
+                $retorno[$cliente->id]=$cliente->nome.', '.$cliente->cpf;
             }
         }
         return $retorno;

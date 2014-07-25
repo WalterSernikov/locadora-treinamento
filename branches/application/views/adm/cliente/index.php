@@ -16,7 +16,7 @@
 
 
 
-                $link_editar = base_url($this->config->item('area_admin') . '/locacao/editar/' . $u->id);
+                $link_editar = base_url($this->config->item('area_admin') . '/cliente/editar/' . $u->id);
 
                 $acoes = '<a href="' . $link_editar . '" class="btn btn-info btn-sm">Editar</a>&nbsp;';
 

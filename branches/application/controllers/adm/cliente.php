@@ -38,6 +38,50 @@ class Cliente extends TR_Controller{
         
     }
     
+    function valida_email ($tipo_requisicao= 'http'){
+        
+        $email= $this->input->post('email');
+        $id= $this->input->post('id');
+        
+        $usuario = $this->cliente_model->get_by_email($email,$id);
+        
+        if($usuario){
+            $this->form_validation->set_message('valida_email','Já existe um usuário cadastrado com este email.');
+            $resultado = (int)FALSE;
+            
+        }else{
+            
+            $resultado = (int)TRUE;
+        }
+        if ($tipo_requisicao === 'http'){
+            return $resultado;
+            
+        }else{
+            echo $resultado;
+            
+        }
+    }
+    
+    function confere_cpf (){
+        
+        $cpf= $this->input->post('cpf');
+        $id= $this->input->post('id');
+        
+        $cliente = $this->cliente_model->get_by_cpf($cpf,$id);
+        
+        if($cliente){
+            $resultado = (int)FALSE;
+            
+        }else{
+            
+            $resultado = (int)TRUE;
+        }
+        
+            echo $resultado;
+            
+        
+    }
+    
     function all(){
         
         $dados['cliente'] = $this->cliente_model->get_all();
